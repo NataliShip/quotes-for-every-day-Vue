@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ text }}</h1>
+    <h2>{{ text }}</h2>
+    <span>{{ author }}</span>
   </div>
 </template>
 
@@ -8,7 +9,8 @@
 export default {
   name: "Quote",
   props: {
-    text: String
+    text: String,
+    author: String
   }
 };
 </script>
