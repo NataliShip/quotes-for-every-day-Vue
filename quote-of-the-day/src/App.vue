@@ -4,7 +4,11 @@
       <h2>Цитаты на каждый день</h2>
       <div v-if="quotes.length === 0" class="quotes__loader" />
       <div class="quotes__card" v-for="quote in quotes" :key="quote.quoteLink">
-        <Quote :key="quote.quoteLink" :text="quote.quoteText" :author="quote.quoteAuthor" />
+        <Quote
+          :key="quote.quoteLink"
+          :text="quote.quoteText"
+          :author="quote.quoteAuthor"
+        />
       </div>
       <button @click="this.fetchQuote">Больше цитат</button>
     </div>
@@ -13,36 +17,23 @@
 
 <script>
 import Quote from "./components/Quote.vue";
-import fetchJsonp from "fetch-jsonp";
+import { mapState } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "app",
   components: {
     Quote
   },
-  data() {
-    return {
-      quotes: []
-    };
+  computed: {
+    ...mapState({
+      quotes: state => state.quotes
+    })
   },
   methods: {
-    fetchQuote() {
-      const api =
-        "https://api.forismatic.com/api/1.0/?method=getQuote&lang=ru&format=jsonp&jsonp=parse";
-      fetchJsonp(api, {
-        jsonpCallbackFunction: "parse"
-      })
-        .then(response => {
-          return response.json();
-        })
-        .then(json => {
-          console.log("parsed json", json);
-          this.quotes.push(json);
-        })
-        .catch(ex => {
-          console.log("parsing failed", ex);
-        });
-    }
+    ...mapActions([
+      "fetchQuote"
+    ])
   },
 
   created() {
