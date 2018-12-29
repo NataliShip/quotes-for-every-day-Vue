@@ -43,6 +43,10 @@ export default {
           console.log("parsing failed", ex);
         });
     }
+  },
+
+  created() {
+    this.fetchQuote();
   }
 };
 </script>
@@ -69,9 +73,6 @@ export default {
 
   &__card {
     width: 70%;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 20px;
   }
 }
 </style>
