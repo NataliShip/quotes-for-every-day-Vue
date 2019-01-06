@@ -17,8 +17,7 @@
 
 <script>
 import Quote from "./components/Quote.vue";
-import { mapState } from "vuex";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "app",

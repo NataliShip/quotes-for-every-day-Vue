@@ -1,13 +1,17 @@
 <template>
   <div class="quote">
-    <div class="quote__close" @click="this.delete"></div>
+    <div
+      v-if="quotes.length > 1"
+      class="quote__close"
+      @click="this.delete"
+    ></div>
     <h2 class="quote__text">{{ text }}</h2>
     <span class="quote__author">{{ author }}</span>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "Quote",
@@ -15,12 +19,15 @@ export default {
     text: String,
     author: String
   },
+  computed: {
+    ...mapState({
+      quotes: state => state.quotes
+    })
+  },
   methods: {
-    ...mapMutations([
-      "deleteQuote"
-    ]),
+    ...mapMutations(["deleteQuote"]),
     delete() {
-      this.deleteQuote(this.text)
+      this.deleteQuote(this.text);
     }
   }
 };
@@ -40,6 +47,7 @@ export default {
     width: 20px;
     height: 20px;
     background: url("../../src/assets/x.svg") no-repeat;
+    cursor: pointer;
   }
   &__text {
     margin: 0 0 10px 0;
