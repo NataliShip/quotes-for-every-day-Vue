@@ -11,6 +11,11 @@ export default new Vuex.Store({
   mutations: {
     addQuote(state, json) {
       state.quotes.push(json);
+    },
+    deleteQuote(state, quote) {
+      console.log(quote)
+      const newState = state.quotes.filter(item => item.quoteText.toString() !== quote.toString())
+      state.quotes = newState
     }
   },
   actions: {
