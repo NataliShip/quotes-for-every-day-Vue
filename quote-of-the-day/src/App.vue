@@ -1,7 +1,7 @@
 <template>
   <div class="quotes">
     <div class="quotes__container">
-      <h2>Цитаты на каждый день</h2>
+      <h1>Цитаты на каждый день</h1>
       <div v-if="quotes.length === 0" class="quotes__loader" />
       <div class="quotes__card" v-for="quote in quotes" :key="quote.quoteLink">
         <Quote
@@ -53,6 +53,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Arial';
   }
 
   &__loader {
@@ -63,7 +64,7 @@ export default {
   }
 
   &__card {
-    width: 70%;
+    width: 90%;
   }
 }
 </style>
