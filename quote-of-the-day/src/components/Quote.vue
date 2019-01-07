@@ -1,10 +1,8 @@
 <template>
   <div class="quote">
-    <div
-      v-if="quotes.length > 1"
-      class="quote__close"
-      @click="this.delete"
-    ></div>
+    <div v-if="quotes.length > 1" class="quote__close" @click="this.delete">
+
+    </div>
     <h2 class="quote__text">{{ text }}</h2>
     <span class="quote__author">{{ author }}</span>
   </div>
@@ -17,7 +15,8 @@ export default {
   name: "Quote",
   props: {
     text: String,
-    author: String
+    author: String,
+    color: String
   },
   computed: {
     ...mapState({
@@ -33,13 +32,13 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .quote {
   position: relative;
-  border: 4px solid #ccc;
   border-radius: 10px;
   padding: 20px 50px 20px 20px;
   margin: 20px;
+  background-color: #fff;
   &__close {
     position: absolute;
     top: 20px;
