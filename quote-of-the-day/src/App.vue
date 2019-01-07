@@ -10,7 +10,7 @@
           :author="quote.quoteAuthor"
         />
       </div>
-      <button @click="this.fetchQuote">Больше цитат</button>
+      <button class="quotes__button" @click="this.fetchQuote">Больше цитат</button>
     </div>
   </div>
 </template>
@@ -57,6 +57,16 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  
+  &__button {
+    font-size: 22px;
+    font-family: 'Arial';
+    border: 5px solid #aaa;
+    color: #444;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+  }
 
   &__header {
     color: #666;

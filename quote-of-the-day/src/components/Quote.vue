@@ -1,23 +1,36 @@
 <template>
   <div class="quote">
-    <div v-if="quotes.length > 1" class="quote__close" @click="this.delete"></div>
+    <div
+      v-if="quotes.length > 1"
+      class="quote__close"
+      @click="this.delete"
+    ></div>
     <h2 class="quote__text">{{ text }}</h2>
     <span class="quote__author">{{ author }}</span>
     <div class="social">
       <div>Поделиться:</div>
-      <a href="#" class="social__vk"></a>
-      <a href="#" class="social__fb"></a>
-      <a href="#" class="social__tw"></a>
-      <a href="#" class="social__ok"></a>
+      <socialIcon :href="vk" className="social__vk" />
+      <socialIcon :href="fb" className="social__fb" />
+      <socialIcon :href="tw" className="social__tw" />
+      <socialIcon :href="ok" className="social__ok" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapMutations, mapState } from "vuex";
+import socialIcon from "./socialIcon"
 
 export default {
   name: "Quote",
+  data() {
+    return {
+      url: 'http://forismatic.com/ru/',
+    }
+  },
+  components: {
+    socialIcon,
+  },
   props: {
     text: String,
     author: String,
@@ -26,13 +39,25 @@ export default {
   computed: {
     ...mapState({
       quotes: state => state.quotes
-    })
+    }),
+    vk() {
+      return `https://vk.com/share.php?url=${this.url}&title=${this.text}`;
+    },
+    fb() {
+      return `https://www.facebook.com/sharer/sharer.php?u=${this.url}`;
+    },
+    tw() {
+      return `https://twitter.com/intent/tweet?text=${this.text}&url=${this.url}`;
+    },
+    ok() {
+      return `https://connect.ok.ru/offer?url=${this.url}`;
+    }
   },
   methods: {
     ...mapMutations(["deleteQuote"]),
     delete() {
       this.deleteQuote(this.text);
-    }
+    },
   }
 };
 </script>
@@ -63,12 +88,15 @@ export default {
 
   .social {
     display: flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
     align-items: center;
     color: black;
     font-size: 20px;
 
-    &__vk, &__ok, &__tw, &__fb {
+    &__vk,
+    &__ok,
+    &__tw,
+    &__fb {
       width: 30px;
       height: 30px;
       margin: 0 0 0 10px;
