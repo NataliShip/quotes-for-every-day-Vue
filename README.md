@@ -5,6 +5,8 @@
 
 **DEMO: http://reactapp.ru/quote/**
 
+### Необходимые команды для запуска проекта
+
 ```
 npm install
 ```
