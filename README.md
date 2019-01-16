@@ -1,6 +1,6 @@
 # Quotes for every day
 
-Приложение цитаты на каждый день на Vue. Использует API forismatic.com, формат данных jsonp.
+Приложение цитаты на каждый день на Vue и Vuex. Использует API forismatic.com, формат данных jsonp.
 
 
 **DEMO: http://reactapp.ru/quote/**
